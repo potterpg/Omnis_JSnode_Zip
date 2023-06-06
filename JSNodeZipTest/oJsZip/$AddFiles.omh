@@ -1,0 +1,27 @@
+If $cinst.$AllOK()=kFalse
+	Quit method
+End If
+
+Do FileOps.$filelist(kFileOpsIncludeFiles,pcFolderPath,kFileOpsInfoFullName+kFileOpsInfoName) Returns ilFileList
+If ilFileList.$linecount=0
+	Do ilFileList.$define()
+	Do ilFileList.$cols.$add('path',kCharacter,kSimplechar,300)
+	Do ilFileList.$cols.$add('inputFile',kCharacter,kSimplechar,300)
+	Do FileOps.$splitpathname(pcFolderPath,lcNotRequired,lcNotRequired,lcFileName,lcExtension)
+	Calculate lcFileName as con(lcFileName,lcExtension)
+	Do ilFileList.$add(lcFileName,pcFolderPath)
+Else
+	Calculate lcDestination as mid(pcFolderPath,rpos(sys(9),pcFolderPath)+1) ## Fetch folder name we are adding, and add this to the zip path name
+	Calculate ilFileList.$cols.name.$name as "path" ## the destination file path in the ZIP file e.g. folder1/folder2/test.txt
+	Calculate ilFileList.$cols.fullname.$name as "inputFile" ## full pathname of the input file
+	Do ilFileList.$sendall($sendallref.path.$assign(con(lcDestination,"/",$sendallref.path))) ## internal zip path?
+End If
+
+Do $cinst.$callmethod("zip","addFiles",ilFileList,kTrue,lcErrorText) Returns lnStatus ## The above creates the list in the format required by this call.
+If lnStatus=kFalse
+	Breakpoint Some Issue!
+End If
+If len(lcErrorText)>0
+	Yes/No message Error {The addFiles method reported an error: [lcErrorText]} ## Why would it report it here?
+	Breakpoint
+End If

@@ -1,0 +1,16 @@
+On evClick ## Event Parameters - pRow( Itemreference )
+	# Set Filename to the selected path in the list recovered from opening the zip file
+	If ilZipFileContents.$line=0
+		OK message Error {No File Selected!}
+		Quit method
+	End If
+	If ilZipFileContents.dir=kTrue ## Is a directory, so don't try and extract it.
+		OK message Error {Cannot extract a directory}
+		Quit method
+	End If
+	
+	Calculate ibExtractedFile as '' ## Clear the binary, so any failure does not show anything extracted.
+	If len(ilZipFileContents.path)>0
+		Do ioZip.$ExtractAFile(ilZipFileContents.path) Returns ibExtractedFile
+	End If
+	Do $cinst.$bobjs.1025.$redraw(kTrue,kTrue) ## A text field to indicate the size of the extracted file... just evidence of it having been done.

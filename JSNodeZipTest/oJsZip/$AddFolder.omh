@@ -1,0 +1,13 @@
+If $cinst.$AllOK()=kFalse
+	Quit method
+End If
+
+# Add a folder to the zip object in memory
+Do lrRow.$cols.$add('path',kCharacter,kSimplechar,300) ## Random choice of 300 characters
+Calculate lrRow.path as pcFolderPath
+
+Do $cinst.$callmethod('zip','addFolder',lrRow,kTrue,lcErrorText) ## $callmethod(cModule, cMethod, vListOrRow [,bWait=kFalse, &cErrorText)
+If len(lcErrorText)>0
+	Yes/No message Error {The addFolder method reported an error: [lcErrorText]} ## Why would it report it here?
+	Breakpoint
+End If

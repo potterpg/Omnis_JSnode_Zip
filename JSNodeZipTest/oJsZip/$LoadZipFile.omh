@@ -1,0 +1,15 @@
+If $cinst.$AllOK()=kFalse
+	Quit method
+End If
+
+# Load a zip file into the zip object in memory
+Do lrRow.$cols.$add('path',kCharacter,kSimplechar,300) ## Random choice of 300 characters
+Calculate lrRow.path as pcFileName
+
+Do $cinst.$callmethod('zip','loadZip',lrRow,kTrue,lcErrorText) ## $callmethod(cModule, cMethod, vListOrRow [,bWait=kFalse, &cErrorText)
+If len(lcErrorText)>0
+	Yes/No message Error {The loadZip method reported an error: [lcErrorText]} ## Why would it report it here?
+	Breakpoint
+End If
+
+Quit method ilZipContents ## If loaded, it returns a list of its contents into the instance variable, but in the $methodreturn function...

@@ -1,0 +1,9 @@
+# Developer: Philip G. Potter
+# Date: 06-06-2023
+# Version: 1.00
+
+# Demo code bringing the methods in the file omnis_zip.js to operate within Omnis Studio 10.22
+# using version of omnis_zip.js:  28-Mar-19	jmg_unmarked
+
+# So basically the methods offered within this object are a one to one call to the methods available within the current omnis_zip.js file
+# As opposed to what might be available in in the jszip object requested : "jszip": "^3.10.1"

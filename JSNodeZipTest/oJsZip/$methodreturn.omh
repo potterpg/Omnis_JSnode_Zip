@@ -1,0 +1,32 @@
+
+# This is where we need to process any results from the JS call.
+
+Calculate plResult.$line as 1 ## if returning a list or a row, we need the first row for flags first.
+
+If plResult.$cols.$findname('content') ## This means it is returning actual data...
+	Calculate ibExtractedFileContents as plResult.content
+	
+Else If plResult.$cols.$findname('__module') ## This means it is just completed the task.
+	
+	Switch plResult.__method
+		
+		Case 'newZip','addFiles'
+			If plResult.ok=kFalse
+				OK message Error {[plResult.__method] failed!}
+				Breakpoint
+			End If
+			
+		Case 'saveZip'
+			If plResult.ok=kFalse
+				OK message Error {[plResult.__method] failed!}
+			Else
+				OK message File Saved {as [plResult.file]}
+			End If
+			
+		Case 'loadZip'
+			Calculate ilZipContents as plResult ## Need to pass list back to calling function
+			
+		Default ## Unknown result returned
+			Breakpoint Add an additional process for the return?
+	End Switch
+End If

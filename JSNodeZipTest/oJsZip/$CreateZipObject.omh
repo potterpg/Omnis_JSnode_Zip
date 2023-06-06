@@ -1,0 +1,10 @@
+If $cinst.$AllOK()=kFalse
+	Quit method
+End If
+
+# Create a zip object in memory
+Do $cinst.$callmethod('zip','newZip',lrRow,kTrue,lcErrorText) ## $callmethod(cModule, cMethod, vListOrRow [,bWait=kFalse, &cErrorText)
+If len(lcErrorText)>0
+	Yes/No message Error {The newZip method reported an error: [lcErrorText]} ## Why would it report it here?
+	Breakpoint
+End If

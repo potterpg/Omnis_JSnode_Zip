@@ -1,0 +1,15 @@
+If $cinst.$AllOK()=kFalse
+	Quit method
+End If
+
+# Save a zip object in memory to the filename given
+Do lrRow.$cols.$add('outputFile',kCharacter,kSimplechar,300) ## Random choice of 300 characters
+Do lrRow.$cols.$add('compressionLevel',kInteger,k32x32)
+Calculate lrRow.outputFile as pcFileName
+Calculate lrRow.compressionLevel as 6 ## there is a default of 6 in the Javascript code, so will set that here as well.
+
+Do $cinst.$callmethod('zip','saveZip',lrRow,kTrue,lcErrorText) ## $callmethod(cModule, cMethod, vListOrRow [,bWait=kFalse, &cErrorText)
+If len(lcErrorText)>0
+	Yes/No message Error {The saveZip method reported an error: [lcErrorText]} ## Why would it report it here?
+	Breakpoint
+End If

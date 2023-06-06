@@ -1,0 +1,5 @@
+On evClick ## Event Parameters - pRow( Itemreference )
+	Do FileOps.$selectdirectory(lcFolderPath,'Please select the folder to add:','',sys(10))
+	If len(lcFolderPath)>0
+		Do ioZip.$AddFiles(lcFolderPath)
+	End If

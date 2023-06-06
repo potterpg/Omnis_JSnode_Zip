@@ -1,0 +1,2 @@
+
+Do $cinst.$cancel() ## Use this to terminate the node.js process

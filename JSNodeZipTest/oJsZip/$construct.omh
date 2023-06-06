@@ -1,0 +1,4 @@
+
+Calculate ibIsAvailable as kTrue
+Do $cinst.$init() ## Initialize the object so it is ready to execute JavaScript method calls. Returns true if successful
+Do $cinst.$start() ## Runs the JavaScript worker in a background thread. Returns true if the worker was successfully started

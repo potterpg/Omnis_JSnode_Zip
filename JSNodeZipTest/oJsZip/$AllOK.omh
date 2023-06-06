@@ -1,0 +1,5 @@
+If ibIsAvailable=kFalse ## any validation can be done here, but so far we only have the flag when the worker has an error.
+	OK message Error {The worker is not running, something went wrong!}
+	Quit method kFalse
+End If
+Quit method kTrue

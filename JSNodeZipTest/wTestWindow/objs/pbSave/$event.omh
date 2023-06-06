@@ -1,0 +1,5 @@
+On evClick ## Event Parameters - pRow( Itemreference )
+	Do FileOps.$putfilename(lcFilePath,'Please select the file to save to:','',sys(10))
+	If len(lcFilePath)>0
+		Do ioZip.$SaveZipFile(lcFilePath)
+	End If

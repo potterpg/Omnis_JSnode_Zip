@@ -1,0 +1,4 @@
+
+Calculate ibIsAvailable as kFalse ## The worker thread exits after generating this notification
+
+Yes/No message Error {The Node javascript system reported an error: ([prError.errorCode]) : [prError.errorInfo]}

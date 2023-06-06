@@ -1,0 +1,6 @@
+On evClick ## Event Parameters - pRow( Itemreference )
+	Do FileOps.$getfilename(lcFilePath,'Please select the zip file to open:','*.zip',sys(10))
+	If len(lcFilePath)>0
+		Do ioZip.$LoadZipFile(lcFilePath) Returns ilZipFileContents
+		Redraw ilZipFileContents ## Redraw the list of contents
+	End If
