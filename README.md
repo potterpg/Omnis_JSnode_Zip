@@ -12,7 +12,7 @@ npm i jszip
 (the npm command is installed with node.js, available on the web)
 ```
 
-Edit omnis_modules.js by adding an entry to the 'moduleMap' object for the zip module (or from Studio 11 it should be loaded automatically since it is in its own folder ‘omnis_zip’):
+Edit omnis_modules.js by adding an entry to the 'moduleMap' object for the zip module:
 ```
 const moduleMap = {
 zip: require('./omnis_zip.js'),
